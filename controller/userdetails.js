@@ -41,7 +41,7 @@ const userdetails={
     },
     async updateDetails(req,res,next)
     {
-
+  
         // handleMultipartData(req,res,async(err)=>{
         //     if (err) {
         //         return next(CustomErrorHandler.serverError(err.message));
