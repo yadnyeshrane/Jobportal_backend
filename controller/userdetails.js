@@ -94,13 +94,13 @@ const userdetails={
             // }
 
             const { name, surname,email,password,mobileno, image,
-            addresLine1,
-            addresLine2,
+                addresLine_1,
+            addresLine_2,
             pincode,
             country,
             state,
-            nativeaddresLine1,
-            nativeaddresLine2,
+            nativeaddresLine_1,
+            nativeaddresLine_2,
             nativepincode, } = req.body;
             let document;
             try {
@@ -109,13 +109,13 @@ const userdetails={
                     {
                         name,
                         surname,email,password,mobileno,
-                        addresLine1,
-                        addresLine2,
+                        addresLine_1,
+                        addresLine_2,
                         pincode,
                         country,
                         state,
-                        nativeaddresLine1,
-                        nativeaddresLine2,
+                        nativeaddresLine_1,
+                        nativeaddresLine_2,
                         nativepincode,
                         ...(req.file && { image: filePath }),
                     },
