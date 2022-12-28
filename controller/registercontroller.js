@@ -1,9 +1,7 @@
 import Joi, { ref } from "joi";
 import CustomErrorHandler from "../service/CustomErrorHandler";
-import bcrpyt from 'bcrypt';
+import bcrpyt from "bcrypt";
 import { User } from "../models";
-
-
 
 const registercontroller = {
   async register(req, res, next) {
@@ -14,53 +12,57 @@ const registercontroller = {
       password: Joi.string()
         .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
         .required(),
-        mobileno:Joi.string().min(10).pattern(/^[0-9]+$/).required(),
-        image:Joi.string()
+      mobileno: Joi.string()
+        .min(10)
+        .pattern(/^[0-9]+$/)
+        .required(),
+      image: Joi.string(),
       //repeat_password:Joi.ref(password)
     });
     const { error } = registerSchema.validate(req.body);
     if (error) {
       return next(error);
     }
-    try{
-        //check if the user alredy exist
-        const exist=await User.exists({mobileno:req.body.mobileno})
-       console.log("Exist--",exist)
-        if(exist)
-        {
+    try {
+      //check if the user alredy exist
+      const exist = await User.exists({ mobileno: req.body.mobileno });
+      console.log("Exist--", exist);
+      if (exist) {
         //    console.log("inside")
-            return next(CustomErrorHandler.alreadyExist("This user is already registerd"))
-        }
-
+        return next(
+          CustomErrorHandler.alreadyExist("This user is already registerd")
+        );
+      }
+    } catch (error) {
+      return next(error);
     }
-    catch(error)
-    {
-     return next(error);
-    }
 
-    const hashedpass=await bcrpyt.hash(req.body.password,10)
-    const user=new User({
-        name:req.body.name,
-        surname:req.body.surname,
-        email:req.body.email,
-        password:hashedpass,
-        mobileno:req.body.mobileno,
-        image:''
-    })
+    const hashedpass = await bcrpyt.hash(req.body.password, 10);
+    const user = new User({
+      name: req.body.name,
+      surname: req.body.surname,
+      email: req.body.email,
+      password: hashedpass,
+      mobileno: req.body.mobileno,
+      image: "",
+      addresLine_1: "",
+      addresLine_2: "",
+      pincode: "",
+      country: "",
+      state: "",
+      nativeaddresLine_1: "",
+      nativeaddresLine_2: "",
+      nativepincode: "",
+    });
     //Register user
-    console.log("USer",user);
-    try{
-        const result=await user.save()
-        console.log("Result",result)
-
+    console.log("USer", user);
+    try {
+      const result = await user.save();
+      console.log("Result", result);
+    } catch (error) {
+      //     console.log(error)
     }
-    catch(error)
-    {
-   //     console.log(error)
-
-    }
-   res.json({msg:"Regsitered Sucessfully"})
-
+    res.json({ msg: "Regsitered Sucessfully" });
   },
 };
 

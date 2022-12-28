@@ -93,13 +93,30 @@ const userdetails={
             //     // rootfolder/uploads/filename.png
             // }
 
-            const { name, price, size } = req.body;
+            const { name, surname,email,password,mobileno, image,
+            addresLine1,
+            addresLine2,
+            pincode,
+            country,
+            state,
+            nativeaddresLine1,
+            nativeaddresLine2,
+            nativepincode, } = req.body;
             let document;
             try {
                 document = await User.findOneAndUpdate(
                     { _id: req.params.id },
                     {
                         name,
+                        surname,email,password,mobileno,
+                        addresLine1,
+                        addresLine2,
+                        pincode,
+                        country,
+                        state,
+                        nativeaddresLine1,
+                        nativeaddresLine2,
+                        nativepincode,
                         ...(req.file && { image: filePath }),
                     },
                     { new: true }

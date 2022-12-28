@@ -8,7 +8,15 @@ const userschema=new Schema({
     email:{type:String,required:true},
     password:{type:String,required:true},
     mobileno:{type:String,required:true,unique:true},
-    image:{type: String}
+    image:{type: String},
+    addresLine_1:{type:String},
+    addresLine_2:{type:String},
+    pincode:{type:String},
+    country:{type:String},
+    state:{type:String},
+    nativeaddresLine_1:{type:String},
+    nativeaddresLine_2:{type:String},
+    nativepincode:{type:String},
     
 },{timestamps:true})
 
