@@ -12,4 +12,5 @@ router.post("/login",logincontroller.login);
 router.get("/user/:id",userdetails.getDetails);
 router.put("/user/:id",userdetails.updateDetails);
 router.post("/postjob",jobdetailscontroller.postJob);
+router.post("/getparticularjobdetails",jobdetailscontroller.getJobDetails);
 export default router;

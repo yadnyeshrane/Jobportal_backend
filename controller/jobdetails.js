@@ -47,6 +47,23 @@ const jobdetailscontroller={
           console.log("Error",error)
           }
           res.json({ msg: "Job Creadted Sucessfully" });
+    },
+
+    async getJobDetails(req,res,next){
+      const categoryId=req.body.categoryId;
+     console.log("categoryId",categoryId)
+      try{
+
+        var result= await Job.collection.find({"category_enum":{$eq:categoryId}})
+        const response=await result.forEach((data)=>{
+            console.log("Data",data);
+        })
+    console.log("Result",result);
+      }
+      catch(error)
+      {
+        console.log("Error",error)
+      }
     }
 }
 export default jobdetailscontroller;
