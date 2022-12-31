@@ -52,11 +52,13 @@ const jobdetailscontroller={
     async getJobDetails(req,res,next){
       const categoryId=req.body.categoryId;
      console.log("categoryId",categoryId)
+     var tempArray=[];
       try{
-
+        
         var result= await Job.collection.find({"category_enum":{$eq:categoryId}})
         const response=await result.forEach((data)=>{
             console.log("Data",data);
+            tempArray.push(data);
         })
     console.log("Result",result);
       }
@@ -64,6 +66,7 @@ const jobdetailscontroller={
       {
         console.log("Error",error)
       }
+      return res.json({"data":tempArray});
     }
 }
 export default jobdetailscontroller;

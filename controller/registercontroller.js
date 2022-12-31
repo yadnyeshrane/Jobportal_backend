@@ -9,8 +9,7 @@ const registercontroller = {
       name: Joi.string().min(3).max(30).required(),
       surname: Joi.string().min(3).max(30).required(),
       email: Joi.string().email().required(),
-      password: Joi.string()
-        .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+      password: Joi.string().max(8)
         .required(),
       mobileno: Joi.string()
         .min(10)
