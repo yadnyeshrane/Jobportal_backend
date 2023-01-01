@@ -13,4 +13,5 @@ router.get("/user/:id",userdetails.getDetails);
 router.put("/user/:id",userdetails.updateDetails);
 router.post("/postjob",jobdetailscontroller.postJob);
 router.post("/getparticularjobdetails",jobdetailscontroller.getJobDetails);
+router.get("/getjobsbycategory/:cat_id",jobdetailscontroller.getJobByCategory);
 export default router;
