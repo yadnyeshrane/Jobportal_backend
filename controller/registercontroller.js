@@ -2,6 +2,7 @@ import Joi, { ref } from "joi";
 import CustomErrorHandler from "../service/CustomErrorHandler";
 import bcrpyt from "bcrypt";
 import { User } from "../models";
+import empoloyejobController from "./employyedetails";
 
 const registercontroller = {
     async register(req, res, next) {
@@ -58,6 +59,14 @@ const registercontroller = {
         console.log("USer", user);
         try {
             const result = await user.save();
+            const tempobject={
+                firstname: req.body.name,
+                lastname: req.body.surname,
+                email: req.body.email,
+                
+                mobileno: req.body.mobileno
+            }
+            empoloyejobController.employyeregister(tempobject)
             console.log("Result", result);
         } catch (error) {
             //     console.log(error)
