@@ -92,7 +92,9 @@ const jobdetailscontroller = {
         const categoryId = parseInt(req.params.cat_id);
         var tempArray = [];
         try {
-            var result = Job.collection.find({
+            let result
+            categoryId==0?result=Job.collection.find():
+             result = Job.collection.find({
                 category_enum: { $eq: categoryId },
             });
             const response = await result.forEach((data) => {
