@@ -1,4 +1,5 @@
 import express from "express";
+import empoloyejobController from "../controller/employyedetails";
 import jobdetailscontroller from "../controller/jobdetails";
 import logincontroller from "../controller/logincontroller";
 import registercontroller from "../controller/registercontroller";
@@ -14,4 +15,6 @@ router.put("/user/:id",userdetails.updateDetails);
 router.post("/postjob",jobdetailscontroller.postJob);
 router.post("/getparticularjobdetails",jobdetailscontroller.getJobDetails);
 router.get("/getjobsbycategory/:cat_id",jobdetailscontroller.getJobByCategory);
+router.get("/employee/:id",empoloyejobController.getEmployyeRegister)
+router.put("/employee/:id",empoloyejobController.updateEmployyeRegister);
 export default router;
