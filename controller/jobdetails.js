@@ -91,12 +91,17 @@ const jobdetailscontroller = {
     async getJobByCategory(req, res, next) {
         const categoryId = parseInt(req.params.cat_id);
         var tempArray = [];
+        var usersProjection = { 
+            
+            _id: 0
+        };
         try {
             let result
-            categoryId==0?result=Job.collection.find():
+            categoryId==0?result=Job.collection.find({}).project(usersProjection):
              result = Job.collection.find({
                 category_enum: { $eq: categoryId },
-            });
+            }).project(usersProjection);
+            console.log("Result",result)
             const response = await result.forEach((data) => {
                 console.log("Data", data);
                 tempArray.push(data);
