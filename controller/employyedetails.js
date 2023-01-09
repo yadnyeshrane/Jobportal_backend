@@ -1,4 +1,5 @@
 import { Employee } from "../models";
+import CustomErrorHandler from "../service/CustomErrorHandler";
 
 const empoloyejobController = {
     async employyeregister(data) {
