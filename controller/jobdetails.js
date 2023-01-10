@@ -1,5 +1,6 @@
 import Joi, { ref } from "joi";
 import { Job } from "../models";
+import CustomErrorHandler from "../service/CustomErrorHandler";
 
 const jobdetailscontroller = {
     async postJob(req, res, next) {
@@ -86,6 +87,25 @@ const jobdetailscontroller = {
             console.log("Error", error);
         }
         return res.json({ data: tempArray });
+    },
+    async getDetials(req, res, next) {
+        console.log(req);
+        const categoryId = req.params.id;
+        console.log("categoryId", categoryId);
+        var tempArray = [];
+        try {
+            var result = await Job.findOne({
+                _id:categoryId
+            });
+            if(!result)
+            {
+                return next(CustomErrorHandler.datanotFound())
+            } return res.json({data:result});
+            console.log("Result", result);
+        } catch (error) {
+            console.log("Error", error);
+        }
+     
     },
 
     async getJobByCategory(req, res, next) {

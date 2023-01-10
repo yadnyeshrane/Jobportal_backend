@@ -17,4 +17,6 @@ router.post("/getparticularjobdetails",jobdetailscontroller.getJobDetails);
 router.get("/getjobsbycategory/:cat_id",jobdetailscontroller.getJobByCategory);
 router.get("/employee/:id",empoloyejobController.getEmployyeRegister)
 router.put("/employee/:id",empoloyejobController.updateEmployyeRegister);
+//based on id
+router.get("/getJobDetails/:id",jobdetailscontroller.getDetials);
 export default router;
