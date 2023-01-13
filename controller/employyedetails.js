@@ -101,13 +101,14 @@ const empoloyejobController = {
         }
     },
     async getCategorizeEmployye(req, res, next) {
-        console.log("Request", req.body);
-        const { jobchangeFLag } = req.body;
-        console.log("jobchangeFLag",jobchangeFLag)
+        const emp_sector = req.params.cat_id;
         let tempArray = [];
+        
         try {
-            const userDetails = await Employee.find({
-                "$and": [{ "lookingJob":"Yes" },{"prefered_job_sector":"1"}]
+            let userDetails;
+            emp_sector=="All"?userDetails=await Employee.find():
+             userDetails = await Employee.find({
+                "$and": [{ "lookingJob":"Yes" },{"prefered_job_sector":req.params.cat_id}]
             });
             // const userDetails = await Employee.find({
             //      $and: [{"lookingJob": "Yes"}]})

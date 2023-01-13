@@ -20,5 +20,5 @@ router.put("/employee/:id",empoloyejobController.updateEmployyeRegister);
 //based on id
 router.get("/getJobDetails/:id",jobdetailscontroller.getDetials);
 
-router.post("/jobchangelist",empoloyejobController.getCategorizeEmployye);//filter the job based on id & change for job yesflag
+router.get("/get-emp-by-category/:cat_id",empoloyejobController.getCategorizeEmployye);//filter the job based on id & change for job yesflag
 export default router;
