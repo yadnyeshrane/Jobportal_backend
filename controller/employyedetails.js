@@ -124,6 +124,34 @@ const empoloyejobController = {
         }
         return res.json({ data: tempArray });
     },
+
+    async getAllEmpDetails(req,res,next){
+        const emp_sector = req.params.user_mobile;
+        try{
+          const response=  await Employee.aggregate( [
+            { $match: {
+                mobileno: emp_sector
+            } },
+                {
+                  $lookup:
+                    {
+                      from: "Register",
+                      localField: "mobileno",
+                      foreignField: "mobileno",
+                      as: "filed"
+                    }
+               }
+             ] )
+             if (!response ||response.length==0) {
+                return next(CustomErrorHandler.datanotFound());
+            }
+             console.log("Response",response);
+             return res.json({data:response})
+        }
+        catch(err){
+            console.log("Error",err)
+        }
+    }
 };
 
 export default empoloyejobController;

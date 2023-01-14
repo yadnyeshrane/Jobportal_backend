@@ -21,4 +21,6 @@ router.put("/employee/:id",empoloyejobController.updateEmployyeRegister);
 router.get("/getJobDetails/:id",jobdetailscontroller.getDetials);
 
 router.get("/get-emp-by-category/:cat_id",empoloyejobController.getCategorizeEmployye);//filter the job based on id & change for job yesflag
+
+router.get("/get-emp-all-details/:user_mobile",empoloyejobController.getAllEmpDetails);//get all employyedetails including profille  & Employye Detials
 export default router;
