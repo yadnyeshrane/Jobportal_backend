@@ -152,7 +152,8 @@ const empoloyejobController = {
         catch(err){
             console.log("Error",err)
         }
-    }
+    },
+   
 };
 
 export default empoloyejobController;
