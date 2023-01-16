@@ -23,4 +23,6 @@ router.get("/getJobDetails/:id",jobdetailscontroller.getDetials);
 router.get("/get-emp-by-category/:cat_id",empoloyejobController.getCategorizeEmployye);//filter the job based on id & change for job yesflag
 
 router.get("/get-emp-all-details/:user_mobile",empoloyejobController.getAllEmpDetails);//get all employyedetails including profille  & Employye Detials
+router.get("/get-joblist-posted-byuser/:creator_id",jobdetailscontroller.getEmpJobCreatedDetails)//employe who created the jobs
+
 export default router;

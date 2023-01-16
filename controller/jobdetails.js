@@ -28,7 +28,8 @@ const jobdetailscontroller = {
             min_exp:Joi.string(),
             max_exp:Joi.string(),
             min_salary:Joi.string(),
-            max_salary:Joi.string()
+            max_salary:Joi.string(),
+            creatorId:Joi.string(),
         });
         const { error } = registerSchema.validate(req.body);
         if (error) {
@@ -58,7 +59,8 @@ const jobdetailscontroller = {
             min_exp:Number(req.body.min_exp),
             max_exp:Number(req.body.max_exp),
             min_salary:Number(req.body.min_salary),
-            max_salary:Number(req.body.max_salary)
+            max_salary:Number(req.body.max_salary),
+            creatorId:req.body.creatorId
         });
         try {
             const result = await job.save();
@@ -133,5 +135,32 @@ const jobdetailscontroller = {
         }
         return res.json({ data: tempArray });
     },
+    async getEmpJobCreatedDetails(req,res,next){
+        const jobCreatorId=req.params.creator_id;
+        console.log("Cre",jobCreatorId)
+        let tempArray=[];
+        try{
+            let result = Job.collection.find({
+                creatorId: { $eq: jobCreatorId },
+            })
+            console.log("Result",result.length)
+            const response = await result.forEach((data) => {
+                console.log("Data", data);
+                tempArray.push(data);
+            });
+            // if(tempArray.length==0){
+            //     return next(CustomErrorHandler.datanotFound());
+            // }
+            //console.log("Response",tempArray)
+            return res.json({"data":tempArray})
+        }
+        catch(err)
+        {
+            console.log("Error",err)
+        }
+
+     
+      
+    }
 };
 export default jobdetailscontroller;
