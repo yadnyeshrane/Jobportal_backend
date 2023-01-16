@@ -30,7 +30,7 @@ const empoloyejobController = {
             console.log("Error", response);
         }
     },
-    async updateEmployyeRegister(req, res, next) {
+async updateEmployyeRegister(req, res, next) {
         const {
             id,
             firstname,

@@ -27,7 +27,7 @@ const userschema = new Schema(
         max_exp: { type: Number },
         min_salary: { type: Number },
         max_salary: { type: Number },
-        creatorId: { type: String },
+    creatorId: { type: String },
     },
     { timestamps: true }
 );
