@@ -148,10 +148,10 @@ const jobdetailscontroller = {
                 console.log("Data", data);
                 tempArray.push(data);
             });
-            // if(tempArray.length==0){
-            //     return next(CustomErrorHandler.datanotFound());
-            // }
-            //console.log("Response",tempArray)
+            if(tempArray.length==0){
+                return next(CustomErrorHandler.datanotFound());
+            }
+            console.log("Response",tempArray)
             return res.json({"data":tempArray})
         }
         catch(err)
