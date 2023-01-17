@@ -1,6 +1,7 @@
 import Joi, { ref } from "joi";
 import { Job } from "../models";
 import CustomErrorHandler from "../service/CustomErrorHandler";
+var  ObjectID = require('mongodb').ObjectId;
 
 const jobdetailscontroller = {
     async postJob(req, res, next) {
@@ -262,6 +263,22 @@ console.log("Error",error)
 
      
       
-    }
+    },
+    async deleteJobCreated(req,res,next)
+    {
+        
+        const uniqueId=req.params.id;
+        try{
+            const response=await Job.deleteOne( {"_id": ObjectID(uniqueId)});
+        }
+        catch(error)
+        {
+          return   CustomErrorHandler.serverError(err.message)
+        }
+        return res.status(200).json({"msg":"data deleted sucessfully"})
+
+
+console.log("Response",response);
+    } 
 };
 export default jobdetailscontroller;
