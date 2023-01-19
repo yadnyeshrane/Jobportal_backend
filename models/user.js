@@ -17,6 +17,8 @@ const userschema=new Schema({
     nativeaddresLine_1:{type:String},
     nativeaddresLine_2:{type:String},
     nativepincode:{type:String},
+    educationdetails:{type:String},
+    occupation:{type:String}
     
 },{timestamps:true})
 

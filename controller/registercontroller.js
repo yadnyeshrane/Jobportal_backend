@@ -54,6 +54,8 @@ const registercontroller = {
             nativeaddresLine_1: "",
             nativeaddresLine_2: "",
             nativepincode: "",
+            occupation:"",
+            educationdetails:""
         });
         //Register user
         console.log("USer", user);
