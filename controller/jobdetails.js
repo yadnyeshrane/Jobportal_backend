@@ -141,7 +141,7 @@ const jobdetailscontroller = {
         console.log("Cre", jobCreatorId);
         let tempArray = [];
         try {
-            let result = await Job.collection.find({
+            let result = await Job.find({
                 creatorId: { $eq: jobCreatorId },
             });
             console.log("Result", result.length);
