@@ -146,13 +146,13 @@ const jobdetailscontroller = {
             });
             console.log("Result", result.length);
             const response = await result.forEach((data) => {
-                console.log("Data", data);
+              //  console.log("Data", data);
                 tempArray.push(data);
             });
             if (tempArray.length == 0) {
                 return next(CustomErrorHandler.datanotFound());
             }
-            console.log("Response", tempArray);
+          //  console.log("Response", tempArray);
             return res.json({ data: tempArray });
         } catch (err) {
             console.log("Error", err);
