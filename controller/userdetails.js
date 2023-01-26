@@ -138,13 +138,13 @@ const userdetails = {
 
     async getCivilServicesDetails(req,res,next){
             try{
-             const userProfileDetails=await User.find({occupation: {"$exists" : true, "$ne" : ""}},{"name":1,"surname":1,"mobileno":1,"occupation":1});
+             const userProfileDetails=await User.find({occupation: {"$exists" : true, "$ne" : ""}},{"name":1,"surname":1,"mobileno":1,"occupation":1,"addresLine_2":1});
              if(!userProfileDetails ||userProfileDetails.length==0)
              {
                 return next(CustomErrorHandler.datanotFound());
              }
              console.log("civilservices",userProfileDetails);
-             return res.status(200).json({"Data":userProfileDetails});
+             return res.status(200).json({"data":userProfileDetails});
             }   
             catch(error)     
             {
