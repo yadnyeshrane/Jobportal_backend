@@ -26,4 +26,5 @@ router.get("/get-emp-all-details/:user_mobile",empoloyejobController.getEmpAllDe
 router.get("/get-joblist-posted-byuser/:creator_id",jobdetailscontroller.getEmpJobCreatedDetails)//employe who created the jobs
 router.put("/jobposted-update",jobdetailscontroller.updateEmpJobCreatedDetails);//update the job created by employyers
 router.delete("/jobposted-delete/:id",jobdetailscontroller.deleteJobCreated);//update the job created by employyers
+router.get("/civilservices",userdetails.getCivilServicesDetails);
 export default router;

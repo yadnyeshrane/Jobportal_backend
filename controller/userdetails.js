@@ -135,6 +135,21 @@ const userdetails = {
             res.status(201).json(document);
         });
     },
+
+    async getCivilServicesDetails(req,res,next){
+            try{
+             const userProfileDetails=await User.find({occupation: {"$exists" : true, "$ne" : ""}},{"name":1,"surname":1,"mobileno":1,"occupation":1});
+             if(!userProfileDetails ||userProfileDetails.length==0)
+             {
+                return next(CustomErrorHandler.datanotFound());
+             }
+             console.log("civilservices",userProfileDetails);
+            }   
+            catch(error)     
+            {
+                  console.log("Error",error)
+            }
+    }
 };
 
 export default userdetails;
