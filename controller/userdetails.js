@@ -144,7 +144,7 @@ const userdetails = {
                 return next(CustomErrorHandler.datanotFound());
              }
              console.log("civilservices",userProfileDetails);
-             return res.status(200).json("Data",userProfileDetails);
+             return res.status(200).json({"Data":userProfileDetails});
             }   
             catch(error)     
             {
