@@ -106,7 +106,7 @@ async updateEmployyeRegister(req, res, next) {
         
         try {
             let userDetails;
-            emp_sector=="All"?userDetails=await Employee.find():
+            emp_sector=="All"?userDetails=await Employee.find({ "$and": [{ "lookingJob":"Yes" }]}):
              userDetails = await Employee.find({
                 "$and": [{ "lookingJob":"Yes" },{"prefered_job_sector":req.params.cat_id}]
             });
