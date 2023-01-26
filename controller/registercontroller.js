@@ -10,7 +10,7 @@ const registercontroller = {
             name: Joi.string().min(3).max(30).required(),
             surname: Joi.string().min(3).max(30).required(),
             email: Joi.string().email().required(),
-            password: Joi.string().min(8).pattern("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$").required(),
+            password: Joi.string().min(8).required(),
             mobileno: Joi.string()
                 .min(10)
                 .pattern(/^[0-9]+$/)
