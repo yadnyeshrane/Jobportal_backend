@@ -174,7 +174,7 @@ const jobdetailscontroller = {
             education: Joi.string().required(),
             jobnature: Joi.string().required(),
             comapny_mob: Joi.string(),
-            comapny_aletrmob: Joi.string(),
+            comapny_aletrmob: Joi.string().allow(""),
             adressline_1: Joi.string(),
             adressline_2: Joi.string(),
             state: Joi.string(),
