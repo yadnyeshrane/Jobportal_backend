@@ -36,6 +36,7 @@ const userdetails = {
         }
     },
     async updateDetails(req, res, next) {
+        console.log('body',req.body)
         // handleMultipartData(req,res,async(err)=>{
         //     if (err) {
         //         return next(CustomErrorHandler.serverError(err.message));
@@ -59,81 +60,84 @@ const userdetails = {
         //   },{new:true})
 
         //   return res.json({msg:'Data updated suceffuly',data:userDetails})
-        handleMultipartData(req, res, async (err) => {
-            if (err) {
-                return next(CustomErrorHandler.serverError(err.message));
-            }
-            let filePath;
-            console.log("x", req.file);
-            if (req.file) {
-                filePath = req.file.path;
-            }
+        // handleMultipartData(req, res, async (err) => {
+        //     if (err) {
+        //         return next(CustomErrorHandler.serverError(err.message));
+        //     }
+        //     let filePath;
+        //     console.log("x", req.file);
+        //     if (req.file) {
+        //         filePath = req.file.path;
+        //     }
 
-            // validation
-            // const { error } = User.validate(req.body);
-            // if (error) {
-            //     // Delete the uploaded file
-            //     if (req.file) {
-            //         fs.unlink(`${appRoot}/${filePath}`, (err) => {
-            //             if (err) {
-            //                 return next(
-            //                     CustomErrorHandler.serverError(err.message)
-            //                 );
-            //             }
-            //         });
-            //     }
+        //     // validation
+        //     // const { error } = User.validate(req.body);
+        //     // if (error) {
+        //     //     // Delete the uploaded file
+        //     //     if (req.file) {
+        //     //         fs.unlink(`${appRoot}/${filePath}`, (err) => {
+        //     //             if (err) {
+        //     //                 return next(
+        //     //                     CustomErrorHandler.serverError(err.message)
+        //     //                 );
+        //     //             }
+        //     //         });
+        //     //     }
 
-            //     return next(error);
-            //     // rootfolder/uploads/filename.png
-            // }
+        //     //     return next(error);
+        //     //     // rootfolder/uploads/filename.png
+        //     // }
 
-            const {
-                name,
-                surname,
-                email,
-                password,
-                mobileno,
-                image,
-                addresLine_1,
-                addresLine_2,
-                pincode,
-                country,
-                state,
-                nativeaddresLine_1,
-                nativeaddresLine_2,
-                nativepincode,
-                educationdetails,
-                occupation,
-            } = req.body;
-            let document;
-            try {
-                document = await User.findOneAndUpdate(
-                    { _id: req.params.id },
-                    {
-                        name,
-                        surname,
-                        email,
-                        password,
-                        mobileno,
-                        addresLine_1,
-                        addresLine_2,
-                        pincode,
-                        country,
-                        state,
-                        nativeaddresLine_1,
-                        nativeaddresLine_2,
-                        nativepincode,
-                        occupation,
-                        educationdetails,
-                        ...(req.file && { image: filePath }),
-                    },
-                    { new: true }
-                );
-            } catch (err) {
-                return next(err);
-            }
-            res.status(201).json(document);
-        });
+          
+        // });
+        const {
+            name,
+            surname,
+            email,
+            password,
+            mobileno,
+            image,
+            addresLine_1,
+            addresLine_2,
+            pincode,
+            country,
+            state,
+            nativeaddresLine_1,
+            nativeaddresLine_2,
+            nativepincode,
+            educationdetails,
+            occupation,
+            
+        } = req.body;
+        console.log("req",req.body);
+        let document;
+        try {
+            document = await User.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    name,
+                    surname,
+                    email,
+                    password,
+                    mobileno,
+                    addresLine_1,
+                    addresLine_2,
+                    pincode,
+                    country,
+                    state,
+                    nativeaddresLine_1,
+                    nativeaddresLine_2,
+                    nativepincode,
+                    occupation,
+                    educationdetails,
+                    image ,
+                },
+                { new: true }
+            );
+        } catch (err) {
+            return next(err);
+        }
+        res.status(201).json(document);
     },
 
     async getCivilServicesDetails(req,res,next){
